@@ -3,16 +3,16 @@
 #BiocManager::install("limma")
 
 
-#ÒýÓÃ°ü
+#ï¿½ï¿½ï¿½Ã°ï¿½
 library(limma)
 
-inputFile="geneMatrix.txt"     #±í´ïÊý¾ÝÎÄ¼þ
-conFile="s1.txt"               #¶ÔÕÕ×éµÄÑùÆ·ÐÅÏ¢ÎÄ¼þ
-treatFile="s2.txt"             #ÊµÑé×éµÄÑùÆ·ÐÅÏ¢ÎÄ¼þ
-geoID="GSE5281"                #GEOÊý¾Ý¿âÑÐ¾¿µÄid
-setwd("C:\\Users\\lexb\\Desktop\\GEO\\05.normalize\\GSE5281")      #ÉèÖÃ¹¤×÷Ä¿Â¼
+inputFile="geneMatrix.txt"     #ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
+conFile="s1.txt"               #ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢ï¿½Ä¼ï¿½
+treatFile="s2.txt"             #Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢ï¿½Ä¼ï¿½
+geoID="GSE30219"                #GEOï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ð¾ï¿½ï¿½ï¿½id
+setwd("C:\\Users\\lexb\\Desktop\\GEO\\05.normalize\\GSE30219")      #ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½Ä¿Â¼
 
-#¶ÁÈ¡ÊäÈëÎÄ¼þ£¬²¢¶ÔÊäÈëÎÄ¼þÕûÀí
+#ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 rt=read.table(inputFile, header=T, sep="\t", check.names=F)
 rt=as.matrix(rt)
 rownames(rt)=rt[,1]
@@ -21,7 +21,7 @@ dimnames=list(rownames(exp),colnames(exp))
 data=matrix(as.numeric(as.matrix(exp)),nrow=nrow(exp),dimnames=dimnames)
 rt=avereps(data)
 
-#Èç¹ûÊý¾ÝÃ»ÓÐÈ¡log2, »á¶ÔÊý¾Ý×Ô¶¯È¡log2
+#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½È¡log2, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½È¡log2
 qx=as.numeric(quantile(rt, c(0, 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
 LogC=( (qx[5]>100) || ( (qx[6]-qx[1])>50 && qx[2]>0) )
 if(LogC){
@@ -29,7 +29,7 @@ if(LogC){
 	rt=log2(rt+1)}
 data=normalizeBetweenArrays(rt)
 
-#¶ÁÈ¡ÑùÆ·ÐÅÏ¢µÄÎÄ¼þ(¶ÔÕÕ×éºÍÊµÑé×é)
+#ï¿½ï¿½È¡ï¿½ï¿½Æ·ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ä¼ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½)
 sample1=read.table(conFile, header=F, sep="\t", check.names=F)
 sample2=read.table(treatFile, header=F, sep="\t", check.names=F)
 sampleName1=gsub("^ | $", "", as.vector(sample1[,1]))
@@ -40,11 +40,16 @@ data=cbind(conData,treatData)
 conNum=ncol(conData)
 treatNum=ncol(treatData)
 
-#Êä³öËùÓÐ»ùÒò½ÃÕýºóµÄ±í´ïÁ¿
+#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½
 Type=c(rep("Control",conNum),rep("Treat",treatNum))
 outData=rbind(id=paste0(colnames(data),"_",Type),data)
 write.table(outData,file=paste0(geoID,".normalize.txt"),sep="\t",quote=F,col.names=F)
 
 
-
+######ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½: https://www.biowolf.cn/
+######ï¿½Î³ï¿½ï¿½ï¿½ï¿½ï¿½1: https://shop119322454.taobao.com
+######ï¿½Î³ï¿½ï¿½ï¿½ï¿½ï¿½2: https://ke.biowolf.cn
+######ï¿½Î³ï¿½ï¿½ï¿½ï¿½ï¿½3: https://ke.biowolf.cn/mobile
+######ï¿½â¿¡ï¿½ï¿½Ê¦ï¿½ï¿½ï¿½ï¿½: seqbio@foxmail.com
+######ï¿½â¿¡ï¿½ï¿½Ê¦Î¢ï¿½ï¿½: eduBio
 
